@@ -28,8 +28,8 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
             ""id"": ""b6d9bcee-2ddb-47d4-8ed0-a2e8bdc9506f"",
             ""actions"": [
                 {
-                    ""name"": ""New action"",
-                    ""type"": ""Value"",
+                    ""name"": ""Tap"",
+                    ""type"": ""Button"",
                     ""id"": ""ce0ca40e-8f75-4b00-a174-10d9ce5105b1"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
@@ -41,11 +41,11 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""630e241a-01db-48c3-8fc0-8f5efc939174"",
-                    ""path"": """",
+                    ""path"": ""<Touchscreen>/primaryTouch/tap"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""New action"",
+                    ""action"": ""Tap"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -56,7 +56,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
 }");
         // Game
         m_Game = asset.FindActionMap("Game", throwIfNotFound: true);
-        m_Game_Newaction = m_Game.FindAction("New action", throwIfNotFound: true);
+        m_Game_Tap = m_Game.FindAction("Tap", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -118,12 +118,12 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
     // Game
     private readonly InputActionMap m_Game;
     private List<IGameActions> m_GameActionsCallbackInterfaces = new List<IGameActions>();
-    private readonly InputAction m_Game_Newaction;
+    private readonly InputAction m_Game_Tap;
     public struct GameActions
     {
         private @InputActions m_Wrapper;
         public GameActions(@InputActions wrapper) { m_Wrapper = wrapper; }
-        public InputAction @Newaction => m_Wrapper.m_Game_Newaction;
+        public InputAction @Tap => m_Wrapper.m_Game_Tap;
         public InputActionMap Get() { return m_Wrapper.m_Game; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -133,16 +133,16 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         {
             if (instance == null || m_Wrapper.m_GameActionsCallbackInterfaces.Contains(instance)) return;
             m_Wrapper.m_GameActionsCallbackInterfaces.Add(instance);
-            @Newaction.started += instance.OnNewaction;
-            @Newaction.performed += instance.OnNewaction;
-            @Newaction.canceled += instance.OnNewaction;
+            @Tap.started += instance.OnTap;
+            @Tap.performed += instance.OnTap;
+            @Tap.canceled += instance.OnTap;
         }
 
         private void UnregisterCallbacks(IGameActions instance)
         {
-            @Newaction.started -= instance.OnNewaction;
-            @Newaction.performed -= instance.OnNewaction;
-            @Newaction.canceled -= instance.OnNewaction;
+            @Tap.started -= instance.OnTap;
+            @Tap.performed -= instance.OnTap;
+            @Tap.canceled -= instance.OnTap;
         }
 
         public void RemoveCallbacks(IGameActions instance)
@@ -162,6 +162,6 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
     public GameActions @Game => new GameActions(this);
     public interface IGameActions
     {
-        void OnNewaction(InputAction.CallbackContext context);
+        void OnTap(InputAction.CallbackContext context);
     }
 }

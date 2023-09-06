@@ -2,7 +2,8 @@
 
 namespace _CodeBase.StaticData
 {
-  public class GlobalData : MonoBehaviour
+  [CreateAssetMenu(fileName = "GlobalData", menuName = "StaticData/Global")]
+  public class GlobalData : ScriptableObject
   {
     public float Gravity;
   }

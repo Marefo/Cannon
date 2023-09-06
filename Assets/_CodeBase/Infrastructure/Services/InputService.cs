@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Controls;
@@ -6,6 +7,8 @@ namespace _CodeBase.Infrastructure.Services
 {
   public class InputService : MonoBehaviour
   {
+    public event Action Tapped;
+    
     public Vector2 TouchInput { get; private set; }
     
     private Touchscreen Touchscreen => Touchscreen.current;
@@ -13,10 +16,21 @@ namespace _CodeBase.Infrastructure.Services
 
     private void Awake() => _inputActions = new InputActions();
 
-    private void OnEnable() => _inputActions.Enable();
-    private void OnDisable() => _inputActions.Disable();
+    private void OnEnable()
+    {
+      _inputActions.Enable();
+      _inputActions.Game.Tap.performed += OnTap;
+    }
+
+    private void OnDisable()
+    {
+      _inputActions.Disable();
+      _inputActions.Game.Tap.performed -= OnTap;
+    }
 
     private void Update() => TouchInput = HandleTouchInput();
+
+    private void OnTap(InputAction.CallbackContext obj) => Tapped?.Invoke();
 
     private Vector2 HandleTouchInput()
     {
