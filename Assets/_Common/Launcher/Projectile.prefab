@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 635618809465866714}
   - component: {fileID: 8620076081996485990}
+  - component: {fileID: 5424469781239745857}
   m_Layer: 0
   m_Name: Projectile
   m_TagString: Untagged
@@ -44,8 +45,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8cb044d233f7448698cbdf79a590e1a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _meshGenerator: {fileID: 5424469781239745857}
   _projectileData: {fileID: 11400000, guid: ccf3246bdd007d14993dfe941a8e81f6, type: 2}
   _globalData: {fileID: 11400000, guid: b940a17419c89d04c89501c7e1da1bd0, type: 2}
+--- !u!114 &5424469781239745857
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 635618809465866715}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ef71873adf9418fa5e58e8139c04e44, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _textPrefab: {fileID: 4393529248806423476, guid: 662918f06d5222b4cb5a988985d7bf44, type: 3}
+  _meshFilter: {fileID: 635618809838132939}
+  _data: {fileID: 11400000, guid: ccf3246bdd007d14993dfe941a8e81f6, type: 2}
 --- !u!1 &635618809838132983
 GameObject:
   m_ObjectHideFlags: 0
@@ -73,7 +90,7 @@ Transform:
   m_GameObject: {fileID: 635618809838132983}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.4, y: 0.4, z: 0.4}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 635618809465866714}
   m_RootOrder: 0
@@ -85,7 +102,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 635618809838132983}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: 0}
 --- !u!23 &635618809838132936
 MeshRenderer:
   m_ObjectHideFlags: 0

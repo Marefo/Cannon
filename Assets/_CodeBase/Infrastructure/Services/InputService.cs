@@ -28,7 +28,13 @@ namespace _CodeBase.Infrastructure.Services
       _inputActions.Game.Tap.performed -= OnTap;
     }
 
-    private void Update() => TouchInput = HandleTouchInput();
+    private void Update()
+    {
+      TouchInput = HandleTouchInput();
+      
+      if(Input.GetKeyDown("space"))
+        Tapped?.Invoke();
+    }
 
     private void OnTap(InputAction.CallbackContext obj) => Tapped?.Invoke();
 

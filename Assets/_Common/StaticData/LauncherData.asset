@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3209758b6e84ef9b8758738ad41da9f, type: 3}
   m_Name: LauncherData
   m_EditorClassIdentifier: 
-  LaunchVelocity: 26.36
+  LaunchVelocity: 25
   PhysicsSteps: 100
