@@ -14,7 +14,7 @@ namespace _CodeBase.Logic.LauncherCode
     [SerializeField] private Transform _launchPoint;
     [SerializeField] private LineRenderer _aimLine;
     [SerializeField] private LauncherAnimator _animator;
-    [SerializeField] private LauncherCamera _camera;
+    [SerializeField] private CameraShaker _camera;
     [SerializeField] private ProjectilesPool _projectilesPool;
     [Space(10)] 
     [SerializeField] private LauncherData _launcherData;

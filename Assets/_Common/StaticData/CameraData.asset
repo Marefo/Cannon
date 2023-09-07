@@ -12,6 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3de3d4467edd412d86f8cf0d98ac96ea, type: 3}
   m_Name: CameraData
   m_EditorClassIdentifier: 
-  LaunchShake:
-    Force: 0.05
-    Duration: 0.125
+  ShakeCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  ShakeForce: {x: 0, y: -0.2, z: 0.1}
+  ShakeDuration: 0.1

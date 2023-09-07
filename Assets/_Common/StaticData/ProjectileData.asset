@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: ProjectileData
   m_EditorClassIdentifier: 
   Size: 0.2
-  Offset: 0.05
+  Offset: 0.025
   BounceDamping: 0.5
   MinDistanceToEdgeForMark: 0.5
   ExplosionVelocity: 3

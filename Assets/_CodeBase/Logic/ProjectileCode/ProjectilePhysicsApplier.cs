@@ -74,15 +74,18 @@ namespace _CodeBase.Logic.ProjectileCode
       
       _velocity += Vector3.down * _globalData.Gravity * Time.deltaTime;
 
-      Vector3 nextFramePosition = GetNextFramePosition();
-      List<RaycastHit> collisions = TryGetCollisions(nextFramePosition);
+      Vector3 newPosition = GetNewPosition();
+      Vector3 nextFramePosition = newPosition + _velocity.normalized * _projectileData.Size * 2;
+      List<RaycastHit> collisions = TryGetCollisions(newPosition);
+      List<RaycastHit> nextFrameCollisions = TryGetCollisions(nextFramePosition);
+      
       Collisions.Clear();
       Collisions = collisions;
 
-      if (collisions.Count > 0)
-      {
+      if (collisions.Count > 0) 
         Bounce(collisions.First());
-      }
+      else if(nextFrameCollisions.Count > 0)
+        Bounce(nextFrameCollisions.First());
 
       transform.position += _velocity * Time.deltaTime;
     }
@@ -140,7 +143,7 @@ namespace _CodeBase.Logic.ProjectileCode
 
     private bool IsColliding(RaycastHit hit) => hit.transform != null;
 
-    private Vector3 GetNextFramePosition() => transform.position + _velocity * Time.deltaTime;
+    private Vector3 GetNewPosition() => transform.position + _velocity * Time.deltaTime;
 
     private void Bounce(RaycastHit hit)
     {

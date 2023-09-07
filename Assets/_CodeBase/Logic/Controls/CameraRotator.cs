@@ -14,7 +14,7 @@ namespace _CodeBase.Logic.Controls
 
     private float _rotationY;
     
-    private void Update() => Rotate();
+    private void FixedUpdate() => Rotate();
 
     private void Rotate()
     {
