@@ -8,8 +8,6 @@ namespace _CodeBase.Logic.LauncherCode
 {
   public class LauncherAnimator : MonoBehaviour
   {
-    [SerializeField] private AnimationCurve _recoilCurve;
-    [Space(10)] 
     [SerializeField] private PositionAnimator _animator;
     [SerializeField] private Transform _launcher;
     [Space(10)]
@@ -26,7 +24,7 @@ namespace _CodeBase.Logic.LauncherCode
         StopCoroutine(_recoilCoroutine);
       
       _recoilCoroutine = 
-        StartCoroutine(_animator.AnimationCoroutine(_launcher, _defaultPosition, _data.RecoilOffset, _recoilCurve));
+        StartCoroutine(_animator.AnimationCoroutine(_launcher, _defaultPosition, _data.RecoilOffset, _data.RecoilCurve));
     }
   }
 }

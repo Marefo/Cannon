@@ -9,7 +9,8 @@ namespace _CodeBase.StaticData
     [Header("PHYSICS")]
     public Range VelocityRange;
     public int PhysicsSteps;
-    [Header("ANIMATIONS")]
+    [Header("ANIMATIONS")] 
+    public AnimationCurve RecoilCurve;
     public Vector3 RecoilOffset;
 
     public float GetVelocity(float percent) => Mathf.Lerp(VelocityRange.Min, VelocityRange.Max, percent);

@@ -719,7 +719,7 @@ GameObject:
   - component: {fileID: 750946760}
   - component: {fileID: 750946763}
   - component: {fileID: 750946762}
-  - component: {fileID: 750946761}
+  - component: {fileID: 750946764}
   m_Layer: 0
   m_Name: Ground
   m_TagString: Untagged
@@ -736,25 +736,11 @@ Transform:
   m_GameObject: {fileID: 750946759}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: -0.2, z: 0}
-  m_LocalScale: {x: 10, y: 1, z: 10}
+  m_LocalScale: {x: 8, y: 1, z: 8}
   m_Children: []
   m_Father: {fileID: 1391381629}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!64 &750946761
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 750946759}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!23 &750946762
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -804,6 +790,19 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 750946759}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!65 &750946764
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 750946759}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 10, y: 2.220446e-16, z: 10}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &804225730
 GameObject:
   m_ObjectHideFlags: 0
@@ -2101,30 +2100,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3cf6624afa3e44f5b38231b7b96894c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _recoilCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0.00962619
-      outSlope: 0.00962619
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0.48958334
-    - serializedVersion: 3
-      time: 0.2
-      value: 1
-      inSlope: -0.0685449
-      outSlope: -0.0685449
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.34375003
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
   _animator: {fileID: 1402329041}
   _launcher: {fileID: 659485584}
   _data: {fileID: 11400000, guid: 9a7d195ec9952df42a18c1a257ee06e6, type: 2}

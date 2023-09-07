@@ -8,6 +8,5 @@ namespace _CodeBase.StaticData
   {
     public AnimationCurve ShakeCurve;
     public Vector3 ShakeForce;
-    public float ShakeDuration;
   }
 }

@@ -16,4 +16,28 @@ MonoBehaviour:
     Min: 8
     Max: 50
   PhysicsSteps: 100
-  RecoilOffset: {x: 0, y: 0.05, z: 0.35}
+  RecoilCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0.00962619
+      outSlope: 0.00962619
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.48958334
+    - serializedVersion: 3
+      time: 0.2
+      value: 1
+      inSlope: -0.0685449
+      outSlope: -0.0685449
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.34375003
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  RecoilOffset: {x: 0, y: 0.05, z: 0.25}

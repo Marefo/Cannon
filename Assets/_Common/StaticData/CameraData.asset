@@ -14,9 +14,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ShakeCurve:
     serializedVersion: 2
-    m_Curve: []
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0.06944909
+      outSlope: 0.06944909
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.23750001
+    - serializedVersion: 3
+      time: 0.2
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  ShakeForce: {x: 0, y: -0.2, z: 0.1}
-  ShakeDuration: 0.1
+  ShakeForce: {x: 0, y: 0, z: 0.5}
