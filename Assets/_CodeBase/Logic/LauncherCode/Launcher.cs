@@ -1,5 +1,5 @@
 ﻿using _CodeBase.Infrastructure.Services;
-using _CodeBase.Logic.Projectile;
+using _CodeBase.Logic.ProjectileCode;
 using _CodeBase.StaticData;
 using _CodeBase.UI;
 using UnityEngine;
@@ -8,7 +8,6 @@ namespace _CodeBase.Logic.LauncherCode
 {
   public class Launcher : MonoBehaviour
   {
-    [SerializeField] private ProjectilePhysicsApplier _projectilePrefab;
     [SerializeField] private PowerSlider _powerSlider;
     [SerializeField] private InputService _inputService;
     [Space(10)] 
@@ -16,6 +15,7 @@ namespace _CodeBase.Logic.LauncherCode
     [SerializeField] private LineRenderer _aimLine;
     [SerializeField] private LauncherAnimator _animator;
     [SerializeField] private LauncherCamera _camera;
+    [SerializeField] private ProjectilesPool _projectilesPool;
     [Space(10)] 
     [SerializeField] private LauncherData _launcherData;
     [SerializeField] private GlobalData _globalData;
@@ -73,10 +73,17 @@ namespace _CodeBase.Logic.LauncherCode
 
     private void Launch()
     {
+      if (_projectilesPool.HasProjectiles == false)
+      {
+        Debug.Log("Doesn't have available projectiles!");
+        return;
+      }
+      
       _animator.PlayRecoil();
       _camera.PlayLaunchShake();
-      ProjectilePhysicsApplier projectile = Instantiate(_projectilePrefab, _launchPoint.position, Quaternion.identity);
-      projectile.Launch(ProjectileInitialVelocity);
+      Projectile projectile = _projectilesPool.Get();
+      projectile.Enable(_launchPoint.position);
+      projectile.Physics.Launch(ProjectileInitialVelocity);
     }
   }
 }

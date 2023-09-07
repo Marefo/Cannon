@@ -1,10 +1,9 @@
 ﻿using System;
 using _CodeBase.StaticData;
-using TMPro;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-namespace _CodeBase.Logic.Projectile
+namespace _CodeBase.Logic.ProjectileCode
 {
   public class ProjectileMeshGenerator : MonoBehaviour
   {
@@ -14,7 +13,7 @@ namespace _CodeBase.Logic.Projectile
     [Space(10)] 
     [SerializeField] private ProjectileData _data;
 
-    private void Start()
+    public void Generate()
     {
       _meshFilter.mesh.Clear();
       _meshFilter.mesh = GenerateMesh();

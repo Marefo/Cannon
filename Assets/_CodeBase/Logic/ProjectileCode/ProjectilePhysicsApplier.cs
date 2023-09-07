@@ -6,13 +6,14 @@ using _CodeBase.Infrastructure;
 using _CodeBase.StaticData;
 using UnityEngine;
 
-namespace _CodeBase.Logic.Projectile
+namespace _CodeBase.Logic.ProjectileCode
 {
   public class ProjectilePhysicsApplier : MonoBehaviour
   {
-    public Vector3[] Vertices { get; private set; }
+    public event Action Exploded;
     
-    public List<RaycastHit> Collisions = new List<RaycastHit>();
+    public Vector3[] Vertices { get; private set; }
+    public List<RaycastHit> Collisions { get; private set; } = new List<RaycastHit>();
 
     [SerializeField] private ParticleSystem _explosionVfx;
     [SerializeField] private LayerMask _markableLayer;
@@ -25,14 +26,25 @@ namespace _CodeBase.Logic.Projectile
 
     private Vector3 _velocity;
     private float _lifetime;
+    private Coroutine _moveCoroutine;
 
     private void OnEnable() => _meshGenerator.Generated += OnMeshGenerate;
-    private void OnDisable() => _meshGenerator.Generated -= OnMeshGenerate;
+    
+    private void OnDisable()
+    {
+      if(_moveCoroutine != null)
+        StopCoroutine(_moveCoroutine);
+
+      _lifetime = 0;
+      _velocity = Vector3.zero;
+      
+      _meshGenerator.Generated -= OnMeshGenerate;
+    }
 
     public void Launch(Vector3 initialVelocity)
     {
       _velocity = initialVelocity;
-      StartCoroutine(MovementCoroutine());
+      _moveCoroutine = StartCoroutine(MovementCoroutine());
     }
 
     private void OnMeshGenerate(Vector3[] vertices) => Vertices = vertices;
@@ -156,7 +168,7 @@ namespace _CodeBase.Logic.Projectile
     private void Explode()
     {
       Instantiate(_explosionVfx, transform.position, Quaternion.identity);
-      Destroy(gameObject);
+      Exploded?.Invoke();
     }
 
     private void SpawnExplosionVfx(Vector3 at, Vector3 normal)

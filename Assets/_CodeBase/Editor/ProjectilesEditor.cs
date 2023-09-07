@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using _CodeBase.Logic.Projectile;
+using _CodeBase.Logic.ProjectileCode;
 using UnityEditor;
 using UnityEngine;
 
