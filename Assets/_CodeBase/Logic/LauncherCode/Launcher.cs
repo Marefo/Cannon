@@ -15,6 +15,7 @@ namespace _CodeBase.Logic.LauncherCode
     [SerializeField] private Transform _launchPoint;
     [SerializeField] private LineRenderer _aimLine;
     [SerializeField] private LauncherAnimator _animator;
+    [SerializeField] private LauncherCamera _camera;
     [Space(10)] 
     [SerializeField] private LauncherData _launcherData;
     [SerializeField] private GlobalData _globalData;
@@ -73,6 +74,7 @@ namespace _CodeBase.Logic.LauncherCode
     private void Launch()
     {
       _animator.PlayRecoil();
+      _camera.PlayLaunchShake();
       ProjectilePhysicsApplier projectile = Instantiate(_projectilePrefab, _launchPoint.position, Quaternion.identity);
       projectile.Launch(ProjectileInitialVelocity);
     }

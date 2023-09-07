@@ -9,12 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3bbefe53c2bc4ea29b651ae4c672bf3a, type: 3}
-  m_Name: ProjectileData
+  m_Script: {fileID: 11500000, guid: 3de3d4467edd412d86f8cf0d98ac96ea, type: 3}
+  m_Name: CameraData
   m_EditorClassIdentifier: 
-  Size: 0.2
-  Offset: 0.05
-  BounceDamping: 0.5
-  MinDistanceToEdgeForMark: 0.5
-  ExplosionVelocity: 3
-  Lifetime: 3
+  LaunchShake:
+    Force: 0.05
+    Duration: 0.125
