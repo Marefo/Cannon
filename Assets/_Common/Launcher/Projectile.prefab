@@ -45,6 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8cb044d233f7448698cbdf79a590e1a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _explosionVfx: {fileID: 4084538865166705469, guid: d891d18ddc6c19d4d865b2856e2e18a5, type: 3}
   _markableLayer:
     serializedVersion: 2
     m_Bits: 64
@@ -125,7 +126,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: ebb8780411b8964408c0d832bacbcf36, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

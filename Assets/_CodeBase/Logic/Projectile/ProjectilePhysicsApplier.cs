@@ -14,6 +14,7 @@ namespace _CodeBase.Logic.Projectile
     
     public List<RaycastHit> Collisions = new List<RaycastHit>();
 
+    [SerializeField] private ParticleSystem _explosionVfx;
     [SerializeField] private LayerMask _markableLayer;
     [SerializeField] private Mark _explosionMark;
     [Space(10)]
@@ -154,6 +155,7 @@ namespace _CodeBase.Logic.Projectile
 
     private void Explode()
     {
+      Instantiate(_explosionVfx, transform.position, Quaternion.identity);
       Destroy(gameObject);
     }
 
