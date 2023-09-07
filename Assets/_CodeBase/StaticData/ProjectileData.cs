@@ -10,6 +10,7 @@ namespace _CodeBase.StaticData
     public float Offset;
     [Header("PHYSICS")]
     [Range(0, 1)] public float BounceDamping;
+    public float MinDistanceToEdgeForMark;
     public float ExplosionVelocity;
     public float Lifetime;
   }

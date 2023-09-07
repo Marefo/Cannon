@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using _CodeBase.Infrastructure;
 using _CodeBase.StaticData;
 using UnityEngine;
 
@@ -12,14 +13,21 @@ namespace _CodeBase.Logic.Projectile
     public Vector3[] Vertices { get; private set; }
     
     public List<RaycastHit> Collisions = new List<RaycastHit>();
-    
+
+    [SerializeField] private LayerMask _markableLayer;
+    [SerializeField] private GameObject _explosionMark;
+    [Space(10)]
     [SerializeField] private ProjectileMeshGenerator _meshGenerator;
     [Space(10)]
     [SerializeField] private ProjectileData _projectileData;
     [SerializeField] private GlobalData _globalData;
 
+    private Camera _camera;
     private Vector3 _velocity;
     private float _lifetime;
+    private RaycastHit _lastBounce;
+
+    private void Awake() => _camera = Camera.main;
 
     private void OnEnable() => _meshGenerator.Generated += OnMeshGenerate;
     private void OnDisable() => _meshGenerator.Generated -= OnMeshGenerate;
@@ -56,14 +64,16 @@ namespace _CodeBase.Logic.Projectile
       }
       
       _velocity += Vector3.down * _globalData.Gravity * Time.deltaTime;
-      
-      Vector3 nextFramePosition = transform.position + _velocity * Time.deltaTime;
+
+      Vector3 nextFramePosition = GetNextFramePosition();
       List<RaycastHit> collisions = TryGetCollisions(nextFramePosition);
       Collisions.Clear();
       Collisions = collisions;
 
-      if (collisions.Count > 0) 
+      if (collisions.Count > 0)
+      {
         Bounce(collisions.First());
+      }
 
       transform.position += _velocity * Time.deltaTime;
     }
@@ -121,12 +131,42 @@ namespace _CodeBase.Logic.Projectile
 
     private bool IsColliding(RaycastHit hit) => hit.transform != null;
 
-    private void Bounce(RaycastHit hit) => 
+    private Vector3 GetNextFramePosition() => transform.position + _velocity * Time.deltaTime;
+
+    private void Bounce(RaycastHit hit)
+    {
+      _lastBounce = hit;
+      TryToMarkSurface(hit);
       _velocity = Vector3.Reflect(_velocity * _projectileData.BounceDamping, hit.normal);
+    }
+
+    private void TryToMarkSurface(RaycastHit hit)
+    {
+      bool isMarkable = Helpers.CompareLayers(_lastBounce.transform.gameObject.layer, _markableLayer);
+
+      float distanceToMaxX = Mathf.Abs(_lastBounce.collider.bounds.max.x - hit.point.x);
+      float distanceToMinX = Mathf.Abs(hit.point.x - _lastBounce.collider.bounds.min.x);
+
+      bool isFarFromEdge = distanceToMaxX > _projectileData.MinDistanceToEdgeForMark &&
+                           distanceToMinX > _projectileData.MinDistanceToEdgeForMark;
+
+      if (isMarkable && isFarFromEdge)
+      {
+        Vector3 spawnVfxPoint = _lastBounce.point + _lastBounce.normal * 0.2f;
+        SpawnExplosionVfx(spawnVfxPoint);
+      }
+    }
 
     private void Explode()
     {
       Destroy(gameObject);
+    }
+
+    private void SpawnExplosionVfx(Vector3 hitPoint)
+    {
+      Transform explosionMark = Instantiate(_explosionMark, hitPoint, Quaternion.identity).transform;
+      Quaternion rotation = Quaternion.FromToRotation(explosionMark.transform.up, _lastBounce.normal);
+      explosionMark.transform.rotation = Quaternion.LookRotation(_lastBounce.normal);
     }
   }
 }

@@ -1457,8 +1457,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1445149330}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.27, y: 0, z: 14.09}
-  m_LocalScale: {x: 2.2, y: 2.2, z: 1.7}
+  m_LocalPosition: {x: 0.27, y: 0, z: 14.33}
+  m_LocalScale: {x: 4, y: 4, z: 3}
   m_Children:
   - {fileID: 2080825716}
   - {fileID: 1938828399}
@@ -1982,7 +1982,6 @@ MonoBehaviour:
   _aimLine: {fileID: 1269362919}
   _launcherData: {fileID: 11400000, guid: 9a7d195ec9952df42a18c1a257ee06e6, type: 2}
   _globalData: {fileID: 11400000, guid: b940a17419c89d04c89501c7e1da1bd0, type: 2}
-  _launchVelocity: 0
 --- !u!1 &1938828398
 GameObject:
   m_ObjectHideFlags: 0
@@ -1995,7 +1994,7 @@ GameObject:
   - component: {fileID: 1938828402}
   - component: {fileID: 1938828401}
   - component: {fileID: 1938828400}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Obstacle (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2090,7 +2089,7 @@ GameObject:
   - component: {fileID: 2080825719}
   - component: {fileID: 2080825718}
   - component: {fileID: 2080825717}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Obstacle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2104,13 +2103,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2080825715}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.42, z: 1.11}
+  m_LocalRotation: {x: -0.051593594, y: -0, z: -0, w: 0.9986682}
+  m_LocalPosition: {x: 0, y: 0.42, z: 1.26}
   m_LocalScale: {x: 3, y: 2, z: 1}
   m_Children: []
   m_Father: {fileID: 1445149331}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -5.915, y: 0, z: 0}
 --- !u!65 &2080825717
 BoxCollider:
   m_ObjectHideFlags: 0

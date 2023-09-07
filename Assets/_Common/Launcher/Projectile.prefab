@@ -45,6 +45,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8cb044d233f7448698cbdf79a590e1a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _markableLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  _explosionMark: {fileID: 5596400038760351133, guid: 0d06314f374e615448656dd82bc0ddad, type: 3}
   _meshGenerator: {fileID: 5424469781239745857}
   _projectileData: {fileID: 11400000, guid: ccf3246bdd007d14993dfe941a8e81f6, type: 2}
   _globalData: {fileID: 11400000, guid: b940a17419c89d04c89501c7e1da1bd0, type: 2}
@@ -60,7 +64,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ef71873adf9418fa5e58e8139c04e44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _textPrefab: {fileID: 4393529248806423476, guid: 662918f06d5222b4cb5a988985d7bf44, type: 3}
   _meshFilter: {fileID: 635618809838132939}
   _data: {fileID: 11400000, guid: ccf3246bdd007d14993dfe941a8e81f6, type: 2}
 --- !u!1 &635618809838132983

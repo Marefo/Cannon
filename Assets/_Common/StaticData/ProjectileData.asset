@@ -15,5 +15,6 @@ MonoBehaviour:
   Size: 0.4
   Offset: 0.1
   BounceDamping: 0.5
+  MinDistanceToEdgeForMark: 0.4
   ExplosionVelocity: 3
   Lifetime: 3

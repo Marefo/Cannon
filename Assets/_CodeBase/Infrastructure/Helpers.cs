@@ -14,5 +14,8 @@ namespace _CodeBase.Infrastructure
       EventSystem.current.RaycastAll(eventDataCurrentPosition, results);
       return results.Count > 0;
     }
+    
+    public static bool CompareLayers(int layer1, LayerMask layer2) => 
+      layer2 == (layer2 | (1 << layer1));
   }
 }
