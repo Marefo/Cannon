@@ -12,13 +12,19 @@ namespace _CodeBase.Editor
     [DrawGizmo(GizmoType.Active | GizmoType.Pickable | GizmoType.NonSelected)]
     public static void RenderCustomGizmo(ProjectilePhysicsApplier projectile, GizmoType gizmo)
     {
-      if(projectile.Vertices == null || projectile.Vertices.Length == 0) return;
-      
+      DrawMeshRaycastEdges(projectile);
+      DrawCollisionPoints(projectile);
+    }
+
+    private static void DrawMeshRaycastEdges(ProjectilePhysicsApplier projectile)
+    {
+      if (projectile.Vertices == null || projectile.Vertices.Length == 0) return;
+
       Gizmos.color = Color.red;
-      
+
       List<Vector3> vertices = projectile.Vertices.ToList()
         .Select(vertex => projectile.transform.position + vertex).ToList();
-      
+
       //bottom
       Gizmos.DrawLine(vertices[0], vertices[1]);
       Gizmos.DrawLine(vertices[1], vertices[2]);
@@ -34,6 +40,17 @@ namespace _CodeBase.Editor
       Gizmos.DrawLine(vertices[5], vertices[6]);
       Gizmos.DrawLine(vertices[6], vertices[7]);
       Gizmos.DrawLine(vertices[4], vertices[7]);
+    }
+
+    private static void DrawCollisionPoints(ProjectilePhysicsApplier projectile)
+    {
+      if(projectile.Collisions == null || projectile.Collisions.Count == 0 ) return;
+      Gizmos.color = Color.yellow;
+
+      foreach (RaycastHit hit in projectile.Collisions)
+      {
+        Gizmos.DrawSphere(hit.point, 0.1f);
+      }
     }
   }
 }

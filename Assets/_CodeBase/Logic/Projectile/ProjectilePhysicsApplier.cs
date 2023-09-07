@@ -11,6 +11,8 @@ namespace _CodeBase.Logic.Projectile
   {
     public Vector3[] Vertices { get; private set; }
     
+    public List<RaycastHit> Collisions = new List<RaycastHit>();
+    
     [SerializeField] private ProjectileMeshGenerator _meshGenerator;
     [Space(10)]
     [SerializeField] private ProjectileData _projectileData;
@@ -18,21 +20,9 @@ namespace _CodeBase.Logic.Projectile
 
     private Vector3 _velocity;
     private float _lifetime;
-    private List<RaycastHit> _collisions = new List<RaycastHit>();
 
     private void OnEnable() => _meshGenerator.Generated += OnMeshGenerate;
     private void OnDisable() => _meshGenerator.Generated -= OnMeshGenerate;
-
-    private void OnDrawGizmos()
-    {
-      if(_collisions == null || _collisions.Count == 0 ) return;
-      Gizmos.color = Color.yellow;
-
-      foreach (RaycastHit hit in _collisions)
-      {
-        Gizmos.DrawSphere(hit.point, 0.1f);
-      }
-    }
 
     public void Launch(Vector3 initialVelocity)
     {
@@ -69,8 +59,8 @@ namespace _CodeBase.Logic.Projectile
       
       Vector3 nextFramePosition = transform.position + _velocity * Time.deltaTime;
       List<RaycastHit> collisions = TryGetCollisions(nextFramePosition);
-      _collisions.Clear();
-      _collisions = collisions;
+      Collisions.Clear();
+      Collisions = collisions;
 
       if (collisions.Count > 0) 
         Bounce(collisions.First());
