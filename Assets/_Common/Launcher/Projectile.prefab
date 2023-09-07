@@ -48,7 +48,7 @@ MonoBehaviour:
   _markableLayer:
     serializedVersion: 2
     m_Bits: 64
-  _explosionMark: {fileID: 5596400038760351133, guid: 0d06314f374e615448656dd82bc0ddad, type: 3}
+  _explosionMark: {fileID: 7006205514127540400, guid: 0d06314f374e615448656dd82bc0ddad, type: 3}
   _meshGenerator: {fileID: 5424469781239745857}
   _projectileData: {fileID: 11400000, guid: ccf3246bdd007d14993dfe941a8e81f6, type: 2}
   _globalData: {fileID: 11400000, guid: b940a17419c89d04c89501c7e1da1bd0, type: 2}

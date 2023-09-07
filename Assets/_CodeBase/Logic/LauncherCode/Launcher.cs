@@ -1,11 +1,10 @@
-﻿using System;
-using _CodeBase.Infrastructure.Services;
+﻿using _CodeBase.Infrastructure.Services;
 using _CodeBase.Logic.Projectile;
 using _CodeBase.StaticData;
 using _CodeBase.UI;
 using UnityEngine;
 
-namespace _CodeBase.Logic
+namespace _CodeBase.Logic.LauncherCode
 {
   public class Launcher : MonoBehaviour
   {
@@ -15,6 +14,7 @@ namespace _CodeBase.Logic
     [Space(10)] 
     [SerializeField] private Transform _launchPoint;
     [SerializeField] private LineRenderer _aimLine;
+    [SerializeField] private LauncherAnimator _animator;
     [Space(10)] 
     [SerializeField] private LauncherData _launcherData;
     [SerializeField] private GlobalData _globalData;
@@ -72,6 +72,7 @@ namespace _CodeBase.Logic
 
     private void Launch()
     {
+      _animator.PlayRecoil();
       ProjectilePhysicsApplier projectile = Instantiate(_projectilePrefab, _launchPoint.position, Quaternion.identity);
       projectile.Launch(ProjectileInitialVelocity);
     }

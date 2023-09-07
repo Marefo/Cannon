@@ -15,19 +15,15 @@ namespace _CodeBase.Logic.Projectile
     public List<RaycastHit> Collisions = new List<RaycastHit>();
 
     [SerializeField] private LayerMask _markableLayer;
-    [SerializeField] private GameObject _explosionMark;
+    [SerializeField] private Mark _explosionMark;
     [Space(10)]
     [SerializeField] private ProjectileMeshGenerator _meshGenerator;
     [Space(10)]
     [SerializeField] private ProjectileData _projectileData;
     [SerializeField] private GlobalData _globalData;
 
-    private Camera _camera;
     private Vector3 _velocity;
     private float _lifetime;
-    private RaycastHit _lastBounce;
-
-    private void Awake() => _camera = Camera.main;
 
     private void OnEnable() => _meshGenerator.Generated += OnMeshGenerate;
     private void OnDisable() => _meshGenerator.Generated -= OnMeshGenerate;
@@ -135,25 +131,24 @@ namespace _CodeBase.Logic.Projectile
 
     private void Bounce(RaycastHit hit)
     {
-      _lastBounce = hit;
       TryToMarkSurface(hit);
       _velocity = Vector3.Reflect(_velocity * _projectileData.BounceDamping, hit.normal);
     }
 
     private void TryToMarkSurface(RaycastHit hit)
     {
-      bool isMarkable = Helpers.CompareLayers(_lastBounce.transform.gameObject.layer, _markableLayer);
+      bool isMarkable = Helpers.CompareLayers(hit.transform.gameObject.layer, _markableLayer);
 
-      float distanceToMaxX = Mathf.Abs(_lastBounce.collider.bounds.max.x - hit.point.x);
-      float distanceToMinX = Mathf.Abs(hit.point.x - _lastBounce.collider.bounds.min.x);
+      float distanceToMaxX = Mathf.Abs(hit.collider.bounds.max.x - hit.point.x);
+      float distanceToMinX = Mathf.Abs(hit.point.x - hit.collider.bounds.min.x);
 
       bool isFarFromEdge = distanceToMaxX > _projectileData.MinDistanceToEdgeForMark &&
                            distanceToMinX > _projectileData.MinDistanceToEdgeForMark;
 
       if (isMarkable && isFarFromEdge)
       {
-        Vector3 spawnVfxPoint = _lastBounce.point + _lastBounce.normal * 0.2f;
-        SpawnExplosionVfx(spawnVfxPoint);
+        Vector3 spawnVfxPoint = hit.point + hit.normal * 0.2f;
+        SpawnExplosionVfx(spawnVfxPoint, hit.normal);
       }
     }
 
@@ -162,11 +157,11 @@ namespace _CodeBase.Logic.Projectile
       Destroy(gameObject);
     }
 
-    private void SpawnExplosionVfx(Vector3 hitPoint)
+    private void SpawnExplosionVfx(Vector3 at, Vector3 normal)
     {
-      Transform explosionMark = Instantiate(_explosionMark, hitPoint, Quaternion.identity).transform;
-      Quaternion rotation = Quaternion.FromToRotation(explosionMark.transform.up, _lastBounce.normal);
-      explosionMark.transform.rotation = Quaternion.LookRotation(_lastBounce.normal);
+      Mark explosionMark = Instantiate(_explosionMark, at, Quaternion.identity);
+      explosionMark.Initialize(_projectileData.Size);      
+      explosionMark.transform.rotation = Quaternion.LookRotation(normal);
     }
   }
 }

@@ -1910,6 +1910,7 @@ GameObject:
   - component: {fileID: 1898525098}
   - component: {fileID: 1898525099}
   - component: {fileID: 1898525100}
+  - component: {fileID: 1898525101}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -1980,8 +1981,47 @@ MonoBehaviour:
   _inputService: {fileID: 262851639}
   _launchPoint: {fileID: 804225731}
   _aimLine: {fileID: 1269362919}
+  _animator: {fileID: 1898525101}
   _launcherData: {fileID: 11400000, guid: 9a7d195ec9952df42a18c1a257ee06e6, type: 2}
   _globalData: {fileID: 11400000, guid: b940a17419c89d04c89501c7e1da1bd0, type: 2}
+--- !u!114 &1898525101
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1898525096}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3cf6624afa3e44f5b38231b7b96894c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _recoilCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0.00962619
+      outSlope: 0.00962619
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.48958334
+    - serializedVersion: 3
+      time: 0.2
+      value: 1
+      inSlope: -0.0685449
+      outSlope: -0.0685449
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.34375003
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  _launcher: {fileID: 659485584}
+  _data: {fileID: 11400000, guid: 9a7d195ec9952df42a18c1a257ee06e6, type: 2}
 --- !u!1 &1938828398
 GameObject:
   m_ObjectHideFlags: 0

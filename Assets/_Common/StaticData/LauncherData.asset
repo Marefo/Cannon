@@ -16,3 +16,4 @@ MonoBehaviour:
     Min: 8
     Max: 50
   PhysicsSteps: 100
+  RecoilOffset: {x: 0, y: 0.05, z: 0.35}

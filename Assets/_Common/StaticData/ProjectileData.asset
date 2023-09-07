@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3bbefe53c2bc4ea29b651ae4c672bf3a, type: 3}
   m_Name: ProjectileData
   m_EditorClassIdentifier: 
-  Size: 0.4
+  Size: 0.2
   Offset: 0.1
   BounceDamping: 0.5
-  MinDistanceToEdgeForMark: 0.4
+  MinDistanceToEdgeForMark: 0.5
   ExplosionVelocity: 3
   Lifetime: 3
